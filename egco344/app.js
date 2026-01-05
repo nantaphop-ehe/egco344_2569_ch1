@@ -40,6 +40,27 @@ const students = [
 ];
 
 /**
+ * API 0: Root endpoint
+ * GET /
+ */
+app.get('/', (req, res) => {
+  res.json({
+    message: "Welcome to the Student API",
+    faculty: "Engineering",
+    totalStudents: students.length,
+    students: students.map(s => ({
+      id: s.id,
+      name: s.name,
+      department: s.department,
+      gpa: s.gpa
+    })),
+    endpoints: {
+      getAllStudents: "GET /api/students",
+      getStudentById: "GET /api/students/:id"
+    }
+  });
+});
+/**
  * API 1: Get all student GPAs
  * GET /api/students
  */
